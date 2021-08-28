@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks,
              cameraTask()
 
         }
+
         binding.btnEnter.setOnClickListener {
             if(binding.edtCode.text.isNullOrBlank())
                 Toast.makeText(this,"Link Empty",Toast.LENGTH_SHORT).show()
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks,
                 val url=binding.edtCode.text.toString()
                 if( URLUtil.isValidUrl(url))
                 {
+
                     val openURL = Intent(Intent.ACTION_VIEW)
                     openURL.data = Uri.parse(url)
                     startActivity(openURL)
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks,
                 {
                     Toast.makeText(this,"Link Not Valid!",Toast.LENGTH_SHORT).show()
                 }
+
 
             }
         }
@@ -88,6 +91,10 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks,
                     binding.cardView1!!.visibility = View.VISIBLE
                     binding.cardView2!!.visibility = View.GONE
                     binding.edtCode!!.setText(result.contents.toString())
+                    if(binding.edtCode.text.isNotEmpty() && URLUtil.isValidUrl(binding.edtCode.text.toString()))
+                    {
+                        binding.btnEnter.visibility = View.VISIBLE
+                    }
                 } catch (exception: JSONException) {
                     Toast.makeText(this, exception.localizedMessage, Toast.LENGTH_SHORT).show()
                     binding.edtCode!!.setText("")

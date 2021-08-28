@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-
+                android:visibility="gone"
                 android:text="Open Link"
                 android:textColor="@color/white" />
 
